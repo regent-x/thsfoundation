@@ -1,0 +1,17 @@
+{% load static %}
+< !doc html >
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{% static 'css/index.css' %}", rel="stylesheet">
+        <link href="{% static 'favicon.ico' %}" rel="icon" >
+    </head>
+    <body>
+        <div id=container>
+            {% block content %}{% endblock %}
+            <script src="{% static 'index.js' %}"><script>
+        </div>
+    </body>
+</html>
+
