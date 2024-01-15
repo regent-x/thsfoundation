@@ -21,8 +21,9 @@ class Investor(models.Model):
     Gender = models.CharField(max_length=15, choices=CHOICE, default="male")
     Religion = models.CharField(max_length=15, choices=RELIGION, default="christian")
 
-    Phone_Number = PhoneNumberField()
-    Whatsapp_Number = PhoneNumberField()
+    Phone_Number = PhoneNumberField(region="NG")
+    Whatsapp_Number = PhoneNumberField(region="NG")
+    Email = models.EmailField(null=True)
 
     class Seeds(models.IntegerChoices):
         One = 1
