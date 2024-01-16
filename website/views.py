@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import InvestorForm
 
+from django.core.mail import send_mail
+
+
 # Create your views here.
 def landing(request):
     return render(request, "landing.html")
+
 
 def signup(request):
     if request.method == "POST":
@@ -17,4 +21,7 @@ def signup(request):
 
 
 def welcome(request):
+    Subject = 'TestRun'
+    msg = "how ya doin'"
+    send_mail(Subject, msg, "bodyofdamola@gmail.com",['spiritofdamola@gmail.com','theholyseed7@gmail.com'])
     return render(request, 'welcome.html')

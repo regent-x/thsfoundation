@@ -1,13 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<main>
-    <h2>Unbelieveable 400% Return On Investment</h2>
-    <h3>No Referrals</h3>
-    <h3>No Marketing Pyramid</h3>
-    <h3>No Ponzi Scheme </h3>
-    <p>Just your money working for your</p>
-    <p>click the link below to get started<p>
-    <Button><a href="{% url 'website:signup' %}">Fill Form</a></Button>
+<main class=container>
+    <h2 class=Hook>400% return guaranteed</h2>
+        <p>No Marketing Pyramid, No Ponzi Scheme, No Referrals. Your money working for you without you becoming an expert in anything. At the THS foundation we take you back to the basics. Investing as it should be. Click the link below to get started.</p>
+    <Button><a href="{% url 'website:signup' %}">Fill Form &rarr;</a></Button>
 </main>
 {% endblock %}
