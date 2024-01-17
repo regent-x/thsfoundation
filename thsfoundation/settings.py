@@ -130,4 +130,4 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "spiritofdamola@gmail.com"
 EMAIL_HOST_PASSWORD = "uqkkzggdyqppymer"
-EMAIL_USE_TSL = True
+EMAIL_USE_TLS = True
