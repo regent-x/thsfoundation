@@ -23,5 +23,5 @@ def signup(request):
 def welcome(request):
     Subject = 'TestRun'
     msg = "how ya doin'"
-    send_mail(Subject, msg, "bodyofdamola@gmail.com",['spiritofdamola@gmail.com','theholyseed7@gmail.com'])
+    send_mail(Subject, msg, "theholyseed07@gmail.com",['spiritofdamola@gmail.com','bodyofdamola@gmail.com'])
     return render(request, 'welcome.html')

@@ -11,7 +11,9 @@ body {
     background-color: #2b6777;
     color:white;
 }
-
+html {
+  background-image: url("{% static 'bg-pics.jpg' %}");
+}
 .container {
     display: flex;
     padding: 4px;

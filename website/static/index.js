@@ -7,6 +7,5 @@ function generate4DigitNumber() {
     form = document.getElementById("myForm")
     form.addEventListener("submit",(event) => {
         event.PreventDefault()
-        form:
-
+    })
 }

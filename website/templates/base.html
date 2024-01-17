@@ -9,8 +9,11 @@
     </head>
     <body>
         <div id=container>
+            <div class=header>
+                <img src="{% static 'logo.png' %}" alt="ths-logo" srcset="">
+            </div>
             {% block content %}{% endblock %}
-            <script src="{% static 'index.js' %}"><script>
+            <script src="{% static 'index.js' %}"></script>
         </div>
     </body>
 </html>
