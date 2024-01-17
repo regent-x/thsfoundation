@@ -35,4 +35,4 @@ class Investor(models.Model):
     Seed = models.IntegerField(choices=Seeds)
     Address = models.TextField()
     Hobbies = models.TextField()
-    Ref_id = models.IntegerField(default=0000)
+    Ref = models.IntegerField(default=0000)
