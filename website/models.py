@@ -21,6 +21,7 @@ class Investor(models.Model):
     Gender = models.CharField(max_length=15, choices=CHOICE, default="male")
     Religion = models.CharField(max_length=15, choices=RELIGION, default="christian")
 
+    Date_of_Birth = models.DateField()
     Phone = PhoneNumberField(region="NG")
     Whatsapp = PhoneNumberField(region="NG")
     Email = models.EmailField(null=True)

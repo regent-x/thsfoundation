@@ -4,8 +4,5 @@ function generate4DigitNumber() {
 
     // Ensure 4-digit string with leading zeros
 
-    form = document.getElementById("myForm")
-    form.addEventListener("submit",(event) => {
-        event.PreventDefault()
-    })
+    document.getElementById("ref").value = randomNumber
 }

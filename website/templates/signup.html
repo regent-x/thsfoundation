@@ -3,7 +3,7 @@
 
 {% block content %}
 <main class=container>
-    <form method=post id="myForm">
+    <form method=post >
         <div class=seperator>
             <h2 class=register> Register </h2>
             <p>Please fill in your correct informaton</p>
@@ -14,5 +14,17 @@
         {% csrf_token%}
         <input type="submit" Value="submit">
     </form>
+    <script src="">
+        window.onload = () => {
+            function generate4DigitNumber() {
+                // Generate the random number
+                const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+
+                // Ensure 4-digit string with leading zeros
+
+                document.getElementById("myForm").value = randomNumber;
+            }
+        }
+    </script>
 </main>
 {% endblock %}
