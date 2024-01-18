@@ -7,7 +7,7 @@ class InvestorForm(forms.ModelForm):
         model = Investor
         fields = '__all__'
         widgets = {
-            "Ref":TextInput(attrs{'id': 'my-ref'})
-
-            }
+            "Date_of_Birth": forms.DateInput(
+                attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd'}
+            )
         }
