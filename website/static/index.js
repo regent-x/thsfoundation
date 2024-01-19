@@ -4,5 +4,6 @@ function generate4DigitNumber() {
 
     // Ensure 4-digit string with leading zeros
 
-    document.getElementById("numberField").value = randomNumber
+    let numbafield = document.getElementById("numberField")
+    numbafield.value = randomNumber
 }
