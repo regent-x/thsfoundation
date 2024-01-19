@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<main class=container>
-    <h2 class=Hook>400% return guaranteed</h2>
-        <p>No Marketing Pyramid, No Ponzi Scheme, No Referrals. Your money working for you without you becoming an expert in anything. At the THS foundation we take you back to the basics. Investing as it should be. Click the link below to get started.</p>
-    <Button><a href="{% url 'website:signup' %}">Fill Form &rarr;</a></Button>
-</main>
+<div class=hero>
+   <div class=hero-content>
+       <h2 class=hero-title>400% returns guaranteed</h2>
+       <p>No Marketing Pyramid, No Ponzi Scheme, No Referrals. Your money working for you without you becoming an
+           expert in anything. At the THS foundation we take you back to the basics. Investing as it should be. Click
+           the link below to get started.</p>
+       <Button class="hero-button"><a href="{% url 'website:signup' %}">Fill Form &rarr;</a></Button>
+   </div>
+</div>
 {% endblock %}

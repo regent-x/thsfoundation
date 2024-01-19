@@ -18,6 +18,6 @@ class InvestorForm(forms.ModelForm):
                 initial="NG",
             ),
             "Ref": forms.NumberInput(
-                attrs={"type": 'number', 'placeholder': 0000}
-            )
+                attrs={"type": 'number',"id": "numberField"}
+            ),
         }
