@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -21,7 +22,7 @@ class Investor(models.Model):
     Gender = models.CharField(max_length=15, choices=CHOICE, default="male")
     Religion = models.CharField(max_length=15, choices=RELIGION, default="christian")
 
-    Date_of_Birth = models.DateField()
+    Date_of_Birth = models.DateField(default=timezone.now)
     Phone = PhoneNumberField(region="NG")
     Whatsapp = PhoneNumberField(region="NG")
     Email = models.EmailField(null=True)
@@ -37,3 +38,6 @@ class Investor(models.Model):
     Address = models.TextField()
     Hobbies = models.TextField()
     Ref = models.IntegerField(default=0000)
+
+    def __str__(self) -> str:
+        return f"{self.Firstname} {self.Surname}"

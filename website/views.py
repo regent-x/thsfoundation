@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import InvestorForm
 
-from django.core.mail import send_mail
+import magic
+import os
+
+from django.core.mail import EmailMessage
 
 
 # Create your views here.
@@ -24,13 +27,20 @@ def signup(request):
 
 
 def welcome(request):
+    path_to_file = "../Account_number.jpg"
+
+    with open( path_to_file , 'rb') as file:
+        file_content = file.read()
+    
+    mime_type = magic.from_buffer(file_content, mime=True)
+
     Subject = 'Registration succesful.'
-    msg = f"""Dear {request.session['name']}, welcome to the ths family,
-             We are glad to have you among us. 
-             To complete the investment process.
-             Send your seed money to the account
-             below then you message our customer 
-             care on whatsapp with your reciept 
-             and your ref number {request.session['ref']}. """
-    send_mail(Subject, msg, "theholyseed07@gmail.com",[f"{request.session['email']}"])
+
+    email = EmailMessage(Subject, msg,  "theholyseed07@gmail.com", [f"{request.session['email']}"])
+    email.attach(path_to_file, file_content, mime_type)
+    msg = f"""Dear {request.session['name']}, welcome to the THS Family,
+     We are glad to have you among us. To complete the investment process, Send your seed money to the account
+     below then you message our customer serviceon whatsapp with your reciept 
+     and your ref number {request.session['ref']}. """
+
     return render(request, 'welcome.html')
