@@ -47,12 +47,7 @@ body {
   background-position: center center;
   filter: brightness(60%);
 }
-.appbar {
-  background-color: #00b05e ;
-  display: flex;
-  place-content: justify;
-  align-items: center;
-}
+
 .hero-content {
   position: relative;
   font-family: 'Montserrat', sans-serif;
@@ -105,39 +100,32 @@ button > a {
   color: white;
   display: inline-block;
 }
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding:20px;
-  margin: 0 0.5rem;
-}
 
-input[type=text],
-input[type=email],
-input[type=number],
-input[type=date]
-input[type=tel],
-select, textarea{
-  text-align: center;
-  display: flex;
-  flex: 1;
-  width: 30%;
-  padding: 4px 12px;
-  border: none;
-  background-color: #f2f2f2;
-  border-bottom: 0.2em solid green;
-  transition: width 0.4s ease-in-out;
-  margin-left: 1em;
+.container{
+  background-color: #36394f;
 }
-
-input[type=text]:focus,
-textarea:focus{
-  width: 60%;
-  border: none;
+.card {
+  display: grid;
+  place-items: center;
+  background-color: #fff;
+  margin: 0 10vw;
+  border-radius: 4px;
+}
+.instruction, .register {
+  color: #fff;
+}
+input:not([type=radio]){
+  width: 100%;
+  resize: vertical;
 }
 
 textarea {
-  padding: 0;
+  width: 100%;
+  height:auto;
+  padding: 12px 20px;
+  border: none;
+  border-bottom: solid 1px #454f36;
+  resize:vertical;
 }
 
 input[type=submit]{

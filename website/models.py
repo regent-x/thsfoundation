@@ -37,7 +37,7 @@ class Investor(models.Model):
     Seed = models.IntegerField(choices=Seeds)
     Address = models.TextField()
     Hobbies = models.TextField()
-    Ref = models.IntegerField(default=0000)
+    Ref = models.IntegerField(null=True)
 
     def __str__(self) -> str:
         return f"{self.Firstname} {self.Surname}"

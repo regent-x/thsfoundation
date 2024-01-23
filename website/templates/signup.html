@@ -2,17 +2,19 @@
 {% block title %}Signup{% endblock %}
 
 {% block content %}
-<main class=container>
-    <form method=post onfocus="generate4DigitNumber()">
-        <div class=seperator>
-            <h2 class=register> Register </h2>
-            <p>Please fill in your correct informaton</p>
-            <p>Fill all the boxes except the Ref_id box</p>
-        </div>
-        <hr>
-        {{ form.as_p }}
-        {% csrf_token%}
-        <input type="submit" Value="submit">
-    </form>
+<main class="container">
+    <h2 class=register> Register </h2>
+    <p class="instruction"style="text-align: center;">Please fill in your correct informaton</p>
+    <div class="card">
+        <form method=post>
+            <hr>
+            {{ form.as_p }}
+            {% csrf_token%}
+            <div id="Ref_id">
+                <p>Please type in the number above into the box</p>
+            </div>
+            <input type="submit" Value="submit">
+        </form>
+    </div>
 </main>
 {% endblock %}

@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
+from .models import Investor
 from .forms import InvestorForm
-
-import magic
-import os
-
 from django.core.mail import EmailMessage
+import os
 
 
 # Create your views here.
@@ -17,7 +15,6 @@ def signup(request):
         form = InvestorForm(request.POST)
         if form.is_valid():
             request.session['name']= form.cleaned_data['Firstname']
-            request.session['ref'] = form.cleaned_data['Ref']
             request.session['email'] = form.cleaned_data['Email']
             form.save()
             return redirect("/welcome")
@@ -27,20 +24,25 @@ def signup(request):
 
 
 def welcome(request):
-    path_to_file = "../Account_number.jpg"
-
-    with open( path_to_file , 'rb') as file:
-        file_content = file.read()
+    investor = Investor.objects.get(request.session["name"])
+    for base, dir, file in os.walk('.'):
+        if file == 'Account_number.jpg':
+            with open( file, 'rb') as file:
+                 file_content = file.read()
     
-    mime_type = magic.from_buffer(file_content, mime=True)
+            Subject = 'Registration succesful.'
 
-    Subject = 'Registration succesful.'
+            msg = f"""Dear {request.session.get('name')}
+             welcome to the THS Family. We are glad to have you among us.
+             To complete the investment process, Send your seed money to the account number in the image attachment sent to you. below then you message our customer service on whatsapp with your reciept 
+             and your ref number {investor.Id}"""
 
-    email = EmailMessage(Subject, msg,  "theholyseed07@gmail.com", [f"{request.session['email']}"])
-    email.attach(path_to_file, file_content, mime_type)
-    msg = f"""Dear {request.session['name']}, welcome to the THS Family,
-     We are glad to have you among us. To complete the investment process, Send your seed money to the account
-     below then you message our customer serviceon whatsapp with your reciept 
-     and your ref number {request.session['ref']}. """
+            email = EmailMessage(Subject, msg,  "theholyseed07@gmail.com", [f"{request.session.get('email')}"])
+            email.attach(file, file_content, "image/png")
+            email.send()
+            return render(request, 'welcome.html')
+        else:
+            continue
+            HttpResponse()
 
-    return render(request, 'welcome.html')
+    
