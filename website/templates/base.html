@@ -8,8 +8,10 @@
         <link href="{% static 'favicon.ico' %}" rel="icon" >
     </head>
     <body>
-        {% block content %}{% endblock %}
-        <script src="{% static 'index.js' %}"></script>
+        <id class=body>
+            {% block content %}{% endblock %}
+            <script src="{% static 'index.js' %}"></script>
+        </id>
     </body>
 </html>
 
