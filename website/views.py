@@ -4,6 +4,7 @@ from .models import Investor
 from .forms import InvestorForm
 from django.core.mail import EmailMessage
 import os
+from .email import send_email_with_attachment, send_email_attachment
 
 
 # Create your views here.
@@ -17,6 +18,7 @@ def signup(request):
         if form.is_valid():
             request.session['name']= form.cleaned_data['Firstname']
             request.session['email'] = form.cleaned_data['Email']
+            request.session['ref'] = form.cleaned_data['Ref']
             form.save()
             print(os.getcwd())
             return redirect("/welcome")
@@ -26,21 +28,34 @@ def signup(request):
 
 
 def welcome(request):
-    investor = Investor.objects.get(request.session["name"])
-    for folder, subfolder, file in os.walk('.'):
-        if file == 'Account_number.jpg':
-            with open( file, 'rb') as file:
-                 file_content = file.read()
+    path = os.getcwd() 
+    file = os.path.join(path, 'static/Account_number.jpg')
+    Subject = 'Registration succesful.'
+    msg = f"""<h1> Dear {request.session.get('name')}</h1>
+
+<p>Glad you are among the few that made it this far.</p>
+<p>To complete the investment process, follow the steps below:</p>
+
+<h2>Steps: </h2>
+<ol>
+  <li> Send your seed money(7k) to the account number in the image below.</li>
+  <li> Send a whatsapp text with the following infomation to our customer service https://wa.me/message/KA5EWBJNZD3QN1</li>
+    <ol>
+      <li>Your REF number:{request.session['ref']}
+      <li>The number of seed(s) paid for</li>
+      <li>Receipt of payment</li>
+    </ol>
+  <li>Wait for confirmation. 
+</ol>
+
+<p>Once confirmed. You'll be added to the official list of investors</p>
+
+<p>We can't wait to make your money work for you.</p>
+
+<p>THSfoundation team."""
     
-            Subject = 'Registration succesful.'
+    email = request.session['email']
+    # send_email_with_attachment(email, Subject, msg, file)
+    send_email_attachment(email, Subject, msg, file)
 
-            msg = f"""Dear {request.session.get('name')}
-             welcome to the THS Family. We are glad to have you among us.
-             To complete the investment process, Send your seed money to the account number in the image attachment sent to you. below then you message our customer service on whatsapp with your reciept 
-             and your ref number {investor.Id}"""
-
-            email = EmailMessage(Subject, msg,  "theholyseed07@gmail.com", [f"{request.session.get('email')}"])
-            email.attach(file, file_content, "image/png")
-            email.send()
-            return render(request, 'welcome.html')
-    return HttpResponse(status=500)
+    return render(request, 'welcome.html')
