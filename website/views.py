@@ -20,7 +20,6 @@ def signup(request):
             request.session['email'] = form.cleaned_data['Email']
             request.session['ref'] = form.cleaned_data['Ref']
             form.save()
-            print(os.getcwd())
             return redirect("/welcome")
     else:
         form = InvestorForm()
@@ -41,18 +40,18 @@ def welcome(request):
   <li> Send your seed money(7k) to the account number in the image below.</li>
   <li> Send a whatsapp text with the following infomation to our customer service https://wa.me/message/KA5EWBJNZD3QN1</li>
     <ol>
-      <li>Your REF number:{request.session['ref']}
+      <li>Your REF number:{request.session['ref']}</li>
       <li>The number of seed(s) paid for</li>
       <li>Receipt of payment</li>
     </ol>
-  <li>Wait for confirmation. 
+  <li>Wait for confirmation.</li>
 </ol>
 
 <p>Once confirmed. You'll be added to the official list of investors</p>
 
 <p>We can't wait to make your money work for you.</p>
 
-<p>THSfoundation team."""
+<p>THSfoundation team.</p>"""
     
     email = request.session['email']
     # send_email_with_attachment(email, Subject, msg, file)
