@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Investor
 from .forms import InvestorForm
 from django.core.mail import EmailMessage
@@ -17,6 +18,7 @@ def signup(request):
             request.session['name']= form.cleaned_data['Firstname']
             request.session['email'] = form.cleaned_data['Email']
             form.save()
+            print(os.getcwd())
             return redirect("/welcome")
     else:
         form = InvestorForm()
@@ -25,7 +27,7 @@ def signup(request):
 
 def welcome(request):
     investor = Investor.objects.get(request.session["name"])
-    for base, dir, file in os.walk('.'):
+    for folder, subfolder, file in os.walk('.'):
         if file == 'Account_number.jpg':
             with open( file, 'rb') as file:
                  file_content = file.read()
@@ -41,8 +43,4 @@ def welcome(request):
             email.attach(file, file_content, "image/png")
             email.send()
             return render(request, 'welcome.html')
-        else:
-            continue
-            HttpResponse()
-
-    
+    return HttpResponse(status=500)
